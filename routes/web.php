@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CollectionsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     // Ambil query dari tabel 'products'
+     $products = DB::table('products')->get();
+    return view('welcome',compact('products'));
 });
+
+
+Route::get('collections', [CollectionsController::class, 'view'])->name('collection-view');
+Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])->name('product-detail-view');
