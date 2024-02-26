@@ -623,7 +623,7 @@
                             <!-- Block2 -->
                             <div class="block2">
                                 <div class="block2-pic hov-img0">
-                                    {{-- <img src="images/product-01.jpg" alt="IMG-PRODUCT"> --}}
+                                    {{-- <img src="images/product-01.jpg" alt="IMG-PRODUCT">git  --}}
                                     <img src="{{asset('photos/'.$p->product_image)}}" alt="IMG-PRODUCT">
                                     {{-- <div class="item-slick3" data-thumb="{{asset('photos/'.$productImage->image_path)}}"> --}}
 

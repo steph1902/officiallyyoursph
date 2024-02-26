@@ -48,7 +48,7 @@ class CollectionsController extends Controller
             ->first();
 
             $productImages = DB::table('product_images')
-            ->join('Color_Variants', 'product_images.product_color_variants_id', '=', 'color_variants.id')
+            ->join('color_variants', 'product_images.product_color_variants_id', '=', 'color_variants.id')
             ->join('products', 'color_variants.product_id', '=', 'products.id')
             ->select('product_images.image_path')
             ->where('products.id', $productId)

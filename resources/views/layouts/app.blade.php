@@ -19,6 +19,36 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('cozastore-master/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cozastore-master/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cozastore-master/css/main.css') }}">
+
+	<link rel="stylesheet" href="text/css" href="{{asset('customfonts/customfontsize.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('customfonts/fontstylesheet.css')}}">
+
+	<style>
+		.hermione-font {
+			font-family: 'Hermione FREE' !important;
+			font-weight: normal !important;
+			font-style: normal !important;
+		}
+		.futura-lt-bt {
+			font-family: 'Futura Lt BT' !important;
+			font-weight: 300 !important;
+			font-style: normal !important;
+		}
+		/* Futura Bold Condensed BT */
+		.futura-bd {
+			font-family: 'Futura BdCn BT' !important;
+			font-weight: bold !important;
+			font-style: normal !important;
+		}
+
+		a
+		{
+			font-family: 'Futura Lt BT' !important;
+		}
+
+	</style>
+
+
 </head>
 
 {{-- sini --}}

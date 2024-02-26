@@ -25,3 +25,13 @@ Route::get('/', function () {
 
 Route::get('collections', [CollectionsController::class, 'view'])->name('collection-view');
 Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])->name('product-detail-view');
+
+Route::get('about', [CollectionsController::class, 'view'])->name('collection-view');
+
+
+Route::get('about-us', function () {
+    // Ambil query dari tabel 'products'
+    // $products = DB::table('products')->get();
+    return view('aboutus');
+//    return view('welcome',compact('products'));
+});

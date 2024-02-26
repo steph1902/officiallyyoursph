@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Hermione FREE';
+    src: url('HermioneFREE.woff2') format('woff2'),
+        url('HermioneFREE.woff') format('woff'),
+        url('HermioneFREE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Lt BT';
+    src: url('FuturaBT-Light.woff2') format('woff2'),
+        url('FuturaBT-Light.woff') format('woff'),
+        url('FuturaBT-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura BdCn BT';
+    src: url('FuturaBT-BoldCondensed.woff2') format('woff2'),
+        url('FuturaBT-BoldCondensed.woff') format('woff'),
+        url('FuturaBT-BoldCondensed.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
