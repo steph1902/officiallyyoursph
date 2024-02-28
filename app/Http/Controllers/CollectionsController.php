@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class CollectionsController extends Controller
 {
+
+    // public function indexView()
+    // {
+        // $instagrams = DB::table('instagram_embeds')->get();
+        // return view('welcome',compact('instagrams'));
+    // }
+
+
+
     //
     public function view()
     {

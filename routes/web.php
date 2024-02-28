@@ -19,7 +19,8 @@ use App\Http\Controllers\CollectionsController;
 Route::get('/', function () {
      // Ambil query dari tabel 'products'
      $products = DB::table('products')->get();
-    return view('welcome',compact('products'));
+     $instagrams = DB::table('instagram_embeds')->get();
+    return view('welcome',compact('products','instagrams'));
 });
 
 

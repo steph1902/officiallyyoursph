@@ -1,271 +1,125 @@
 @extends('layouts.app')
 @section('content')
 
-	<!-- Slider -->
-	<section class="section-slide">
-		<div class="wrap-slick1 rs2-slick1">
-			<div class="slick1">
-				
-				{{-- <div class="item-slick1 bg-overlay1" 
-				style="background-image: url(https://images.unsplash.com/photo-1596451984287-7a274406cbca?q=80&w=2800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);" data-thumb="https://images.unsplash.com/photo-1596451984287-7a274406cbca?q=80&w=2800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-				data-caption="Women’s Wear"> --}}
-				{{-- <div class="item-slick1 bg-overlay1" 
-    style="background-image: url('{{ asset('banner/Enchante Banner-01.jpg') }}');" 
-    data-thumb="{{ asset('banner/Enchante Banner-01.jpg') }}" 
-    data-caption="Women’s Wear"> --}}
+<style>
+    /* Set height of the carousel */
+    .carousel {
+      height: 100vh;
+    }
 
-	<div class="item-slick1 bg-overlay1" 
-    style="background-image: url('{{ asset('banner/Enchante Banner-01.jpg') }}'); background-size: cover;" 
-    data-thumb="{{ asset('banner/Enchante Banner-01.jpg') }}" 
-    data-caption="MILAN DRESS">
+    /* Set height of carousel item */
+    .carousel-item {
+      height: 100%;
+    }
 
+    /* Set background image to cover the entire item */
+    .carousel-item img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
 
+    /*  */
 
-					<div class="container h-full">
-						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-202 txt-center cl0 respon2">
-									M I L A N
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									CARA WOMAN
-								</h2>
-							</div>
-								
-							{{-- <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-									Shop Now
-								</a>
-							</div> --}}
-						</div>
-					</div>
-				</div>
+    /* Gaya umum untuk dual-section */
+.dual-section {
+  display: flex;
+  height: 100vh;
+}
 
-				{{-- <div class="item-slick1 bg-overlay1" 
-				style="background-image: url(https://images.unsplash.com/photo-1490725263030-1f0521cec8ec?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);" data-thumb="https://images.unsplash.com/photo-1490725263030-1f0521cec8ec?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-				data-caption="Women’s Wear"> --}}
+/* Gaya untuk setiap bagian (kiri dan kanan) */
+.left-section,
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-				<div class="item-slick1 bg-overlay1" 
-    style="background-image: url('{{ asset('banner/2.png') }}'); background-size: cover;" 
-    data-thumb="{{ asset('banner/2.png') }}" 
-    data-caption="ADELINE DRESS">
-
-
-					<div class="container h-full">
-						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-								<span class="ltext-202 txt-center cl0 respon2">
-									A D E L I N E
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									ALFE STUDIO
-								</h2>
-							</div>
-								
-							{{-- <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-									Shop Now
-								</a>
-							</div> --}}
-						</div>
-					</div>
-				</div>
-
-				{{-- <div class="item-slick1 bg-overlay1" 
-				style="background-image: url(https://images.unsplash.com/photo-1541081892397-de37f0f2c873?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);" data-thumb="https://images.unsplash.com/photo-1541081892397-de37f0f2c873?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-				data-caption="Women’s Wear"> --}}
-
-				<div class="item-slick1 bg-overlay1" 
-    style="background-image: url('{{ asset('banner/banner 3.png') }}'); background-size: cover;" 
-    data-thumb="{{ asset('banner/banner 3.png') }}" 
-    data-caption="Zurich Dress">
+/* Gaya untuk gambar di dalam setiap bagian */
+.left-section img,
+.right-section img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important; /* Batasi pembesaran lebar maksimum gambar */
+  max-height: 100% !important; /* Batasi pembesaran tinggi maksimum gambar */
+  object-fit: contain !important;
+}
 
 
 
-					<div class="container h-full">
-						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-								<span class="ltext-202 txt-center cl0 respon2">
-									Z U R I C H
-								</span>
-							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-								<h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-									CARA WOMAN
-								</h2>
-							</div>
-								
-							{{-- <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-									Shop Now
-								</a>
-							</div> --}}
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<div class="wrap-slick1-dots p-lr-10"></div>
-		</div>
-	</section>
+.left-section {
+  /* background-image: url('{{ asset('photos/Kleita Official/Moet Dress/Photo/3.jpg') }}'); */
+  background-image: url('{{ asset('dualsectionresize/1.png') }}');
+}
+
+.right-section {
+  background-image: url('{{ asset('dualsectionresize/2.png') }}');
+}
 
 
-	<!-- Banner -->
-	<div class="sec-banner bg0 p-t-95 p-b-55">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						{{-- <img src="{{asset('cozastore-master/images/banner-04.jpg')}}" alt="IMG-BANNER"> --}}
-						<img src="{{asset('photos/Cara Woman/ALAIA DRESS/1.jpg')}}" alt="IMG-BANNER">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Alaia Dress
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									New Arrivals
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Cara Woman
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-md-6 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						{{-- <img src="{{asset('cozastore-master/images/banner-01.jpg')}}" alt="IMG-BANNER"> --}}
-						<img src="{{asset('photos/Alfe Studio/Black/image8.jpeg')}}" alt="IMG-BANNER">
-
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Adeline Dress
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									New Arrivals
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Alfe Studio
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						{{-- <img src="{{asset('cozastore-master/images/banner-01.jpg')}}" alt="IMG-BANNER"> --}}
-						<img src="{{asset('photos/Cara Woman/KLARA DRESS/Pink/1.jpg')}}" alt="IMG-BANNER">
-
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Klara Dress
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									Cara Woman
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Spring 2024
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						{{-- <img src="{{asset('cozastore-master/images/banner-01.jpg')}}" alt="IMG-BANNER"> --}}
-						<img src="{{asset('photos/Kleita Official/Rose Ruffle Dress/Black/1.jpg')}}" alt="IMG-BANNER">
-
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Rose Ruffle Dress
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									Kleita
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Spring 2024
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
-					<!-- Block1 -->
-					<div class="block1 wrap-pic-w">
-						{{-- <img src="{{asset('cozastore-master/images/banner-01.jpg')}}" alt="IMG-BANNER"> --}}
-						<img src="{{asset('photos/Kleita Official/Sasha Dress/Photo/1.jpg')}}" alt="IMG-BANNER">
-
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Sasha Dress
-								</span>
-
-								<span class="block1-info stext-102 trans-04">
-									Kleita
-								</span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
-									Spring 2024
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    /*  */
 
 
-	<!-- Product -->
+
+  </style>
+
+<script>
+  // Atur timing slider menjadi 5 detik
+  $('.carousel').carousel({
+    interval: 3500
+  });
+</script>
+
+  <section>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{{asset('banners/1.png')}}" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset('banners/2.png')}}" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset('banners/3.png')}}" alt="Third slide">
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  <section class="dual-section">
+    <div class="left-section">
+      <div class="content">
+        <h2 class="hermione-font">Moet Dress</h2>
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="content">
+        <h2 class="hermione-font">Rose Ruffle Dress</h2>
+      </div>
+    </div>
+  </section>
+
+
+  {{-- product section --}}
+
+  	<!-- Product -->
 	<section class="bg0 p-t-23 p-b-130">
 		<div class="container">
 			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
+				<h3 class=" cl5 hermione-font">
 					Product Overview
 				</h3>
 			</div>
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+			<div class="flex-w flex-sb-m p-b-10">
+				<div class="flex-w flex-l-m filter-tope-group">
+
+{{--           
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
@@ -280,7 +134,7 @@
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".carawoman">
 						Cara Woman
-					</button>
+					</button> --}}
 
 					{{-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
 						Shoes
@@ -515,16 +369,10 @@
 
 
 			@foreach ($products as $product)
-				
-			
+        @if (!in_array($product->name, ['Adeline Dress', 'Alaia Dress', 'Milan Dress']))		
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower(str_replace(' ', '', $product->brand)) }}">
-					{{-- {{ strtolower(str_replace(' ', '', 'Alfe Studio')) }} Output: alfestudio --}}
-					{{-- {{ strtolower(str_replace(' ', '', $product->brand)) }} Output: alfestudio --}}
-
-
-					<!-- Block2 -->
 					<div class="block2">
-						<div class="block2-pic hov-img0 label-new" data-label="New">
+            <div class="block2-pic hov-img0" data-label="New">
 							<img src="{{asset('photos/'.$product->product_image)}}" alt="IMG-PRODUCT">
 
 							{{-- <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
@@ -552,7 +400,7 @@
 						</div>
 					</div>
 				</div>
-
+        @endif
 			@endforeach	
 
 			</div>
@@ -569,184 +417,56 @@
 			</div> --}}
 		</div>
 	</section>
+  {{-- product section --}}
 
 
+  {{-- product section 2 --}}
+
+  
+
+  {{-- product section 2 --}}
 
 
-
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-					<img src="{{asset('cozastore-master/images/icons/icon-close.png')}}" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  {{--  --}}
 
 
-</body>
-</html>
+  {{-- instagram --}}
+  <section>
+    <div class="container">
+      <div class="row">        
+          <div class="col-md-12 text-center mb-4">
+            <p class="stext-114 cl6 p-r-40 p-b-11 hermione-font">
+              <i style="font-size: 28px !important;">#beOfficiallyYours</i>
+            </p>
+              {{-- <h2 class="hermione-font">Judul Carousel</h2> <!-- Tambahkan judul di sini --> --}}
+          </div>
+      </div>
+      </div>
+  </section>
+
+  <div id="instagram-carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="row">
+              @foreach($instagrams as $ig)
+                <div class="col-md-3">
+                  {!! $ig->embed_code !!}
+                </div>
+              @endforeach                             
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#instagram-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#instagram-carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+  {{-- instagram --}}
 
 @endsection
-
-
-<!--===============================================================================================-->
-
-
-
-
-
-<!--===============================================================================================-->

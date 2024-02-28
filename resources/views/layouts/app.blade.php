@@ -46,6 +46,80 @@
 			font-family: 'Futura Lt BT' !important;
 		}
 
+		/*  */
+
+		.menu-desktop {
+			display: flex !important;
+			align-items: center !important; /* Posisikan secara vertikal di tengah */
+			justify-content: center !important; /* Posisikan secara horizontal di tengah */
+			height: 100% !important; /* Sesuaikan dengan kebutuhan Anda */
+		}
+
+		.main-menu {
+			list-style: none !important;
+			padding: 0 !important;
+			margin: 0 !important;
+		}
+
+		.main-menu li {
+			margin-right: 20px !important; /* Atur jarak antar item menu */
+		}
+
+		/* Atur tampilan label "hot" */
+		.label1::after {
+			content: attr(data-label1) !important;
+			background-color: red !important;
+			color: white !important;
+			padding: 2px 5px !important;
+			border-radius: 3px !important;
+		}
+
+		.navbar {
+		/* background-color: transparent !important; Ganti warna latar belakang menjadi transparan */
+			background-color: rgba(0, 0, 0, 0.5) !important; 
+		/* Warna hitam dengan 50% transparansi */
+
+		}
+
+		.navbar-nav {
+		display: flex !important;
+		align-items: center !important; /* Vertically align items */
+		}
+
+		.nav-item {
+		margin-right: 20px !important;
+		}
+
+		/* Hot label styling */
+		.label1::after {
+		content: attr(data-label1) !important;
+		background-color: red !important;
+		color: white !important;
+		padding: 2px 5px !important;
+		border-radius: 3px !important;
+		}
+
+		/*  */
+
+		.header-v3 .fix-menu-desktop .wrap-menu-desktop 
+		{
+			/* background-color: transparent !important; */
+			background-color: rgba(0, 0, 0, 0.3) !important; 
+		}
+
+		.header-v3 .fix-menu-desktop .wrap-menu-desktop 
+		{
+			border-color: white !important;
+		}
+
+		/*  */
+		.header-v3 .main-menu > li > a
+		{
+			color: white !important;
+		}
+
+
+
 	</style>
 
 
@@ -60,7 +134,7 @@
 		<!-- Header desktop -->
 		<div class="container-menu-desktop trans-03 fix-menu-desktop">
 			<div class="wrap-menu-desktop">
-				<nav class="limiter-menu-desktop p-l-45">
+				<nav class="limiter-menu-desktop p-l-45 navbar-light bg-transparent">
 					
 					<!-- Logo desktop -->		
 					<a href="{{url('/')}}" class="logo">

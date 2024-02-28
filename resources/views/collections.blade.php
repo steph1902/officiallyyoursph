@@ -2,20 +2,22 @@
 @section('content')
 
 
-{{-- <div class="div" style="margin-top:150px;"></div> --}}
+<div class="div" style="margin-top:150px;"></div>
 
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-130">
     <div class="container">
         <div class="p-b-10">
-            <h3 class="ltext-103 cl5">
-                Product Overview
+            <h3 class=" cl5 hermione-font">
+                Vol.1, Enchanté.
             </h3>
+            <h6 class="futura-lt-bt">A delightful collection that will enchant you at first glance✨</h6>
         </div>
 
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                
+                {{-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
                     All Products
                 </button>
 
@@ -29,7 +31,7 @@
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".carawoman">
                     Cara Woman
-                </button>
+                </button> --}}
 
                 {{-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
                     Shoes
@@ -273,7 +275,7 @@
 
                 <!-- Block2 -->
                 <div class="block2">
-                    <div class="block2-pic hov-img0 label-new" data-label="New">
+                    <div class="block2-pic hov-img0" data-label="New">
 
                         <a href="{{url('product-detail/'.$product->id)}}">
                             <img src="{{asset('photos/'.$product->product_image)}}" alt="IMG-PRODUCT">
