@@ -4,6 +4,8 @@
 
 <div class="div" style="margin-top:150px;"></div>
 
+
+
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-130">
     <div class="container">
@@ -293,7 +295,7 @@
                             </a>
 
                             <span class="stext-105 cl3">
-                                {{$product->price}}
+                                ₱ {{ number_format($product->price,0) }}
                             </span>
                         </div>
 

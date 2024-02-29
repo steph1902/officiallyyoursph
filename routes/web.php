@@ -27,7 +27,22 @@ Route::get('/', function () {
 Route::get('collections', [CollectionsController::class, 'view'])->name('collection-view');
 Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])->name('product-detail-view');
 
+Route::get('coming-soon',[CollectionsController::class, 'ComingSoonView'])->name('coming-soon-view');
+
 Route::get('about', [CollectionsController::class, 'view'])->name('collection-view');
+
+
+
+// cart
+// Route::get('shopping-cart','FrontendController@cartView');
+Route::get('shopping-cart', [CollectionsController::class, 'cartView'])->name('shopping-cart-view');
+Route::post('add-to-cart/{id}', [CollectionsController::class, 'addToCart'])->name('add-to-cart');
+Route::get('remove-cart/{id}',[CollectionsController::class, 'removeCart'])->name('remove-cart');
+
+// Route::post('add-to-cart/{id}','FrontendController@addToCart');
+// Route::post('update-shopping-cart/{id}','FrontendController@updateCart');
+// Route::get('remove-cart/{id}','FrontendController@removeCart');
+// Route::get('empty-cart','FrontendController@emptyCart');
 
 
 Route::get('about-us', function () {

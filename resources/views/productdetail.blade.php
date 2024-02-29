@@ -242,6 +242,13 @@
 	</div>
 
 
+	@if(session('alert'))
+		<div class="alert alert-success">
+			{{ session('alert') }}
+		</div>
+	@endif
+
+
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -324,15 +331,22 @@
 						</h4>
 
 						<span class="mtext-106 cl2">
-							IDR {{number_format($productDetail->price, 2)}}
+							₱ {{number_format($productDetail->price, 2)}}
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
 							{{-- Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat. --}}
-                            Product Description: 
+                            {{-- Product Description:  --}}
                             {{$productDetail->product_description}}
 						</p>
 						
+
+						{{-- <form method="POST" action="{{ action('CollectionsController@addToCart',['id' => $productDetail->product_id]) }}" accept-charset="UTF-8"> --}}
+						<form method="POST" action="{{ route('add-to-cart', ['id' => $productDetail->product_id]) }}" accept-charset="UTF-8">
+
+							@csrf
+
+
 						<!--  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
@@ -342,12 +356,13 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+										<select class="js-select2" name="size">
+											{{-- <option>Choose an option</option> --}}
+
+											@foreach ($productsWithSizes as $pws)
+												<option value="{{$pws->size_name}}"> {{$pws->size_name}} </option>
+											@endforeach
+
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -361,12 +376,11 @@
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
+										<select class="js-select2" name="color">
+											{{-- <option>Choose an option</option> --}}
+											@foreach ($productsWithColors as $pwc)
+												<option value="{{$pwc->name}}"> {{$pwc->name}} </option>
+											@endforeach
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -387,15 +401,20 @@
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+
+					
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
+
+									</form>
+
 								</div>
 							</div>	
 						</div>
 
 						<!--  -->
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+						{{-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
 									<i class="zmdi zmdi-favorite"></i>
@@ -413,7 +432,7 @@
 							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
 								<i class="fa fa-google-plus"></i>
 							</a>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -428,11 +447,11 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Size Chart</a>
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							{{-- <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a> --}}
 						</li>
 					</ul>
 
@@ -442,13 +461,93 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									{{$productDetail->product_description}}
 								</p>
 							</div>
 						</div>
 
-						<!-- - -->
+						{{-- size --}}
+
+						{{--  --}}
+						<style>
+							table {
+								width: 100%;
+								border-collapse: collapse;
+							}
+
+							th, td {
+								border: 1px solid #ddd;
+								padding: 8px;
+								text-align: center;
+							}
+
+							th {
+								background-color: #f2f2f2;
+							}
+
+							th.text-center,
+							td.text-center {
+								text-align: center;
+							}
+
+							td.font-bold {
+								font-weight: bold;
+							}
+
+						</style>
+
+
+						{{--  --}}
+
+
+
 						<div class="tab-pane fade" id="information" role="tabpanel">
+							<div class="row">
+								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+									<table>
+										<thead>
+											<tr>
+												<th class="text-center">Size</th>
+												<th class="text-center">XS</th>
+												<th class="text-center">S</th>
+												<th class="text-center">M</th>
+												<th class="text-center">L</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Bust</td>
+												@foreach($productSizeChart as $detail)
+													<td>{{ $detail->bust }}</td>
+												@endforeach
+											</tr>
+											<tr>
+												<td>Waist</td>
+												@foreach($productSizeChart as $detail)
+													<td>{{ $detail->waist }}</td>
+												@endforeach
+											</tr>
+											<tr>
+												<td>Hips</td>
+												@foreach($productSizeChart as $detail)
+													<td>{{ $detail->hips }}</td>
+												@endforeach
+											</tr>
+											<tr>
+												<td>Length</td>
+												@foreach($productSizeChart as $detail)
+													<td>{{ $detail->length }}</td>
+												@endforeach
+											</tr>
+										</tbody>
+									</table>									
+								</div>
+							</div>
+						</div>
+
+						{{-- size --}}
+						<!-- - -->
+						{{-- <div class="tab-pane fade" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
@@ -504,7 +603,7 @@
 									</ul>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 
 						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -594,9 +693,9 @@
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
+			{{-- <span class="stext-107 cl6 p-lr-25">
 				SKU: JAK-01
-			</span>
+			</span> --}}
 
 			<span class="stext-107 cl6 p-lr-25">
 				Categories: Dress
@@ -639,7 +738,7 @@
                                         </a>
 
                                         <span class="stext-105 cl3">
-                                            {{number_format($p->price, 2)}}
+											₱ {{number_format($p->price, 2)}}
                                         </span>
                                     </div>
 

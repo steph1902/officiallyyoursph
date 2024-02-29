@@ -45,6 +45,10 @@
 		{
 			font-family: 'Futura Lt BT' !important;
 		}
+		p
+		{
+			font-family: 'Futura Lt BT' !important;
+		}
 
 		/*  */
 
@@ -152,29 +156,29 @@ SALE --}}
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">NEW IN</a>
-								<ul class="sub-menu">
+								<a href="{{url('coming-soon')}}">NEW IN</a>
+								{{-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
 									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								</ul> --}}
+							</li>
+
+							<li>
+								<a href="{{url('coming-soon')}}">BEST SELLER</a>
+							</li>
+
+							<li>
+								<a href="{{url('coming-soon')}}">CATEGORIES</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="#">BEST SELLER</a>
-							</li>
-
-							<li>
-								<a href="#">CATEGORIES</a>
-							</li>
-
-							<li>
 								<a href="{{route('collection-view')}}">COLLECTIONS</a>
 								{{-- <a class="collapse-item" href="{{route('shops.create')}}">Buat Data Toko Baru</a> --}}
 							</li>
 
 							<li>
-								<a href="#">SALE</a>
+								<a href="{{url('coming-soon')}}">SALE</a>
 							</li>
 
 							{{-- <li>
