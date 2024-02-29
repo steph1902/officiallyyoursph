@@ -28,6 +28,8 @@ Route::get('collections', [CollectionsController::class, 'view'])->name('collect
 Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])->name('product-detail-view');
 
 Route::get('coming-soon',[CollectionsController::class, 'ComingSoonView'])->name('coming-soon-view');
+Route::get('shipping-and-delivery',[CollectionsController::class, 'ShippingView'])->name('shipping-view');
+Route::get('contact-us',[CollectionsController::class, 'ContactView'])->name('contact-view');
 
 Route::get('about', [CollectionsController::class, 'view'])->name('collection-view');
 

@@ -243,15 +243,8 @@
 							Proceed to Checkout
 						</button> --}}
 
-                        <script async
-                        src="https://js.stripe.com/v3/buy-button.js">
-                        </script>
-
-                        <stripe-buy-button
-                        buy-button-id="buy_btn_1OoqEtBKfxkV2cAgh2iS8mE6"
-                        publishable-key="pk_test_51MkSBtBKfxkV2cAgn0C14eap55rL9Obztxkzox85oNsoSr4XG1nBPSGoyHoGhyHBAE9j1gS1ksCxDPsTlV2mF1MG00pXuOG2ZE"
-                        >
-                        </stripe-buy-button>
+                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                        <stripe-buy-button buy-button-id="buy_btn_1OoqEtBKfxkV2cAgh2iS8mE6" publishable-key="pk_test_51MkSBtBKfxkV2cAgn0C14eap55rL9Obztxkzox85oNsoSr4XG1nBPSGoyHoGhyHBAE9j1gS1ksCxDPsTlV2mF1MG00pXuOG2ZE"> </stripe-buy-button>
 
                         
 

@@ -129,6 +129,16 @@
 
 </head>
 
+
+@php
+    $carts = Cart::content();
+    $totalWeight = Cart::weight();
+    $subTotal = Cart::subtotal();
+    $totalPrice = Cart::total();
+    $cartCount = Cart::count();
+@endphp
+
+
 {{-- sini --}}
 
 <body class="animsition">
@@ -190,7 +200,7 @@ SALE --}}
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="{{$cartCount}}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -209,13 +219,14 @@ SALE --}}
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				{{-- #todo --}}
+				<a href="{{url('/')}}"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
 				<div class="flex-c-m h-full p-r-5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="{{$cartCount}}">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 				</div>
@@ -429,23 +440,35 @@ SALE --}}
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
+
+					@foreach ($carts as $c)
+						
+					
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
+							{{-- <img src="images/item-cart-01.jpg" alt="IMG"> --}}
+							<img src=" {{asset('photos/'.$c->options->image_path)}} " class="img-fluid img-responsive"/>
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
+								{{-- White Shirt Pleat --}}
+								{{-- {{$c->name}} --}}
+								<p>{{$c->name}}</p>
+								<small>{{$c->options->size}}</small>
+								<br>
+								<small>{{$c->options->color}}</small>
 							</a>
 
 							<span class="header-cart-item-info">
-								1 x $19.00
+								₱ {{number_format($c->price,0)}}
 							</span>
 						</div>
 					</li>
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					@endforeach
+
+					{{-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="images/item-cart-02.jpg" alt="IMG">
 						</div>
@@ -459,9 +482,9 @@ SALE --}}
 								1 x $39.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
+					{{-- <li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
 							<img src="images/item-cart-03.jpg" alt="IMG">
 						</div>
@@ -475,22 +498,23 @@ SALE --}}
 								1 x $17.00
 							</span>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+						<p>Total: ₱ {{$subTotal}}</p>
+						<p>{{$cartCount}} item(s)</p>
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+						<a href="{{url('shopping-cart')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							View Cart
 						</a>
 
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						{{-- <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Check Out
-						</a>
+						</a> --}}
 					</div>
 				</div>
 			</div>
@@ -511,25 +535,25 @@ SALE --}}
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						HOW TO SHOP
+						DEALS
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Our Store
+								{{-- Our Store --}}
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('coming-soon')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Promotions
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Confirm Payment
+								{{-- Confirm Payment --}}
 							</a>
 						</li>
 
@@ -548,13 +572,13 @@ SALE --}}
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('shipping-and-delivery')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Shipping and Delivery
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('coming-soon')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Returns and Exchange Policy
 							</a>
 						</li>
@@ -586,20 +610,20 @@ SALE --}}
 
                     <ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('about-us')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								About Us
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Partnership
+								{{-- Partnership --}}
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Careers
+								{{-- Careers --}}
 							</a>
 						</li>
 
@@ -645,13 +669,13 @@ SALE --}}
 
                     <ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('coming-soon')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								FAQs
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{url('contact-us')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Contact us
 							</a>
 						</li>

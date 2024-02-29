@@ -136,6 +136,14 @@ class CollectionsController extends Controller
     {
         return view('comingsoon');
     }
+    public function ShippingView()
+    {
+        return view('shippinganddelivery');
+    }
+    public function ContactView()
+    {
+        return view('contactus');
+    }
 
 
 
