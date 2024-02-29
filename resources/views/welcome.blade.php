@@ -90,6 +90,14 @@
       </div>
   </section>
 
+  <style>
+  @media only screen and (max-width: 768px) {
+	.dual-section {
+	  display: none;
+	}
+  }
+</style>
+  
 
   <section class="dual-section">
     <div class="left-section">

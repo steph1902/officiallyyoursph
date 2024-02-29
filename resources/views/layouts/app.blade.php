@@ -220,7 +220,10 @@ SALE --}}
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				{{-- #todo --}}
-				<a href="{{url('/')}}"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="{{url('/')}}">
+					{{-- <img src="images/icons/logo-01.png" alt="IMG-LOGO"> --}}
+					<img src="{{asset('logo/logo-hitam.png')}}" alt="IMG-LOGO">
+				</a>
 			</div>
 
 			<!-- Icon header -->
@@ -245,11 +248,11 @@ SALE --}}
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="{{url('/')}}">Home</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
+						{{-- <li><a href="index.html">Homepage 1</a></li> --}}
+						{{-- <li><a href="home-02.html">Homepage 2</a></li> --}}
+						{{-- <li><a href="home-03.html">Homepage 3</a></li> --}}
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -257,23 +260,23 @@ SALE --}}
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					{{-- <a href="product.html">Shop</a> --}}
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					{{-- <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a> --}}
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					{{-- <a href="blog.html">Blog</a> --}}
 				</li>
 
 				<li>
-					<a href="about.html">About</a>
+					<a href="{{route('collection-view')}}">Collections</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					{{-- <a href="contact.html">Contact</a> --}}
 				</li>
 			</ul>
 		</div>
@@ -311,38 +314,39 @@ SALE --}}
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
-						<a href="index.html" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="{{url('/')}}" class="stext-102 cl2 hov-cl1 trans-04">
 							Home
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+						<a href="{{route('collection-view')}}" class="stext-102 cl2 hov-cl1 trans-04">
+							{{-- My Wishlist --}}
+							Collections
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Account
+							{{-- My Account --}}
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Track Oder
+							{{-- Track Oder --}}
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Refunds
+							{{-- Refunds --}}
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Help & FAQs
+							{{-- Help & FAQs --}}
 						</a>
 					</li>
 				</ul>
@@ -411,11 +415,14 @@ SALE --}}
 
 				<div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
-						About Us
+						{{-- About Us --}}
+						<p class="stext-114 cl6 p-r-40 p-b-11 hermione-font">
+							<i style="font-size: 28px !important;">#beOfficiallyYours</i>
+						</p>
 					</span>
 
 					<p class="stext-108 cl6 p-t-27">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis. 
+						{{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.  --}}
 					</p>
 				</div>
 			</div>
