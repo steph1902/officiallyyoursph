@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home 03</title>
+	<title>Officially Yours | Designer Dress RTW Philippines</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('cozastore-master/images/icons/favicon.png') }}" />
@@ -22,6 +22,21 @@
 
 	<link rel="stylesheet" href="text/css" href="{{asset('customfonts/customfontsize.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('customfonts/fontstylesheet.css')}}">
+
+	<!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('/favicon_io/favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ asset('/favicon_io/favicon-16x16.png') }}" sizes="16x16">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="{{ asset('/favicon_io/apple-touch-icon.png') }}">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/favicon_io/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('/favicon_io/android-chrome-512x512.png') }}">
+
+    <!-- Favicon untuk berbagai browser -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon_io/favicon.ico') }}">
+
 
 	<style>
 		.hermione-font {
@@ -166,7 +181,7 @@ SALE --}}
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="{{url('coming-soon')}}">NEW IN</a>
+								<a href="{{url('new-in')}}">NEW IN</a>
 								{{-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
@@ -175,11 +190,19 @@ SALE --}}
 							</li>
 
 							<li>
-								<a href="{{url('coming-soon')}}">BEST SELLER</a>
+								<a href="{{url('best-sellers')}}">BEST SELLER</a>
 							</li>
 
 							<li>
-								<a href="{{url('coming-soon')}}">CATEGORIES</a>
+								<a href="#">CATEGORIES</a>
+								<ul class="sub-menu">
+									<li><a href="{{url('coming-soon')}}">Tops</a></li>
+									<li><a href="{{url('coming-soon')}}">Outerwear</a></li>
+									<li><a href="{{route('collection-view')}}">Dresses</a></li>
+									<li><a href="{{url('coming-soon')}}">Playsuits</a></li>
+									<li><a href="{{url('coming-soon')}}">Bottoms</a></li>
+									<li><a href="{{url('coming-soon')}}">Accessories</a></li>
+								</ul>
 							</li>
 
 							<li class="label1" data-label1="hot">
@@ -775,6 +798,37 @@ distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a> -
 			</div>
 		</div>
 	</footer>
+
+
+	{{-- whatsapp --}}
+
+	<style>
+		.float-wa{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  	font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  	z-index:100;
+	}
+
+	.my-float{
+		margin-top:16px;
+	}
+	</style>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<a href="https://wa.me/639064495863" class="float-wa" target="_blank">
+		<i class="fa fa-whatsapp my-float"></i>
+	</a>
+
+	{{-- whatsapp --}}
 
 
 

@@ -154,6 +154,18 @@ class CollectionsController extends Controller
         return view('collections',compact('products'));
     }
 
+    public function bestSellerView()
+    {
+        $products = DB::table('products')->get();
+        return view('bestsellers',compact('products'));
+    }
+
+    public function newInView()
+    {
+        $products = DB::table('products')->get();
+        return view('newin',compact('products'));
+    }
+
     public function viewDetail($productId)
     {
 

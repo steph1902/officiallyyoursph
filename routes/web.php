@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CollectionsController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -16,6 +17,12 @@ use App\Http\Controllers\CollectionsController;
 |
 */
 
+Route::post("/payments",[PaymentController::class,'createInvoice'])->withoutMiddleware(['csrf']);
+// Route::post('/create-invoice', 'PaymentController@createInvoice')->withoutMiddleware(['csrf']);
+
+
+
+
 Route::get('/', function () {
      // Ambil query dari tabel 'products'
      $products = DB::table('products')->get();
@@ -27,11 +34,17 @@ Route::get('/', function () {
 Route::get('collections', [CollectionsController::class, 'view'])->name('collection-view');
 Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])->name('product-detail-view');
 
+Route::get('best-sellers', [CollectionsController::class, 'bestSellerView'])->name('best-seller-view');
+Route::get('new-in', [CollectionsController::class, 'newInView'])->name('new-in-view');
+
+
+
+
 Route::get('coming-soon',[CollectionsController::class, 'ComingSoonView'])->name('coming-soon-view');
 Route::get('shipping-and-delivery',[CollectionsController::class, 'ShippingView'])->name('shipping-view');
 Route::get('contact-us',[CollectionsController::class, 'ContactView'])->name('contact-view');
 
-Route::get('about', [CollectionsController::class, 'view'])->name('collection-view');
+// Route::get('about', [CollectionsController::class, 'view'])->name('collection-view');
 
 
 
