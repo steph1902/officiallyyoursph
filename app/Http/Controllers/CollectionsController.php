@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
 // use Illuminate\Http\Request;
+use App\Models\Partnership;
 
 
 class CollectionsController extends Controller
@@ -146,6 +147,24 @@ class CollectionsController extends Controller
     }
 
 
+    public function storePartnershipData(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:20',
+            'message' => 'nullable|string',
+        ]);
+
+        $partnership = Partnership::create($validatedData);
+    
+        return back()->with('success', 'Partnership form submitted successfully');
+
+
+    }
+
+
 
     //
     public function view()
@@ -165,6 +184,17 @@ class CollectionsController extends Controller
         $products = DB::table('products')->get();
         return view('newin',compact('products'));
     }
+
+    public function promotionsView()
+    {
+        return view('promotions');   
+    }
+
+    public function partnershipView()
+    {
+        return view('partnership');
+    }
+
 
     public function viewDetail($productId)
     {

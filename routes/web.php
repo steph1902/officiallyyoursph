@@ -16,6 +16,9 @@ use App\Http\Controllers\PaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
+
 
 Route::post("/payments",[PaymentController::class,'createInvoice'])->withoutMiddleware(['csrf']);
 // Route::post('/create-invoice', 'PaymentController@createInvoice')->withoutMiddleware(['csrf']);
@@ -37,6 +40,23 @@ Route::get('product-detail/{id}', [CollectionsController::class, 'viewDetail'])-
 Route::get('best-sellers', [CollectionsController::class, 'bestSellerView'])->name('best-seller-view');
 Route::get('new-in', [CollectionsController::class, 'newInView'])->name('new-in-view');
 
+Route::get('promotions', [CollectionsController::class, 'promotionsView'])->name('promotions-view');
+
+Route::get('partnership', [CollectionsController::class, 'partnershipView'])->name('partnership-view');
+Route::post('store-partnership-data', [CollectionsController::class, 'storePartnershipData'])->name('post-store-partnership-data');
+
+
+Route::get('faq', function () {
+    return view('faq');
+});
+
+Route::get('about-us', function () {
+    return view('aboutus');
+});
+
+Route::get('return-and-exchange', function () {
+    return view('returnandexchange');
+});
 
 
 
@@ -54,15 +74,8 @@ Route::get('shopping-cart', [CollectionsController::class, 'cartView'])->name('s
 Route::post('add-to-cart/{id}', [CollectionsController::class, 'addToCart'])->name('add-to-cart');
 Route::get('remove-cart/{id}',[CollectionsController::class, 'removeCart'])->name('remove-cart');
 
-// Route::post('add-to-cart/{id}','FrontendController@addToCart');
-// Route::post('update-shopping-cart/{id}','FrontendController@updateCart');
-// Route::get('remove-cart/{id}','FrontendController@removeCart');
-// Route::get('empty-cart','FrontendController@emptyCart');
 
 
 Route::get('about-us', function () {
-    // Ambil query dari tabel 'products'
-    // $products = DB::table('products')->get();
     return view('aboutus');
-//    return view('welcome',compact('products'));
 });
