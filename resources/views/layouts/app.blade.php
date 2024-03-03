@@ -167,7 +167,17 @@
 					
 					<!-- Logo desktop -->		
 					<a href="{{url('/')}}" class="logo">
+
+						<style>
+						.logo img {
+							max-width: 150% !important;
+							max-height: 200% !important;
+						}
+						</style>
+
 						<img src="{{asset('logo/logo-putih.png')}}" alt="IMG-LOGO">
+						{{-- 75: 300 --}}
+						{{-- 45: 180 --}}
 					</a>
 
 
@@ -566,12 +576,12 @@ SALE --}}
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
-                <h4 class="stext-301 cl0 p-b-30">
-                    <img src="{{asset('logo/logo-putih.png')}}" style="width: 55%; height:55%;" alt="Logo">
+                <h4 class="stext-301 cl0">
+                    <img src="{{asset('logo/logo-putih.png')}}" style="width: 70%; height:70%;" alt="Logo">
                 </h4>
 
 				<!-- Social Media Icons -->
-                <div class="flex-c-m flex-w p-b-18">
+                <div class="flex-c-m flex-w p-b-18" style="justify-content:left;">
                     <a href="https://www.facebook.com/profile.php?id=61555758111353&mibextid=hIlR13" class="fs-18 cl7 hov-cl1 trans-04 m-r-16" target="_blank">
                         <i class="fa fa-facebook"></i>
                     </a>
