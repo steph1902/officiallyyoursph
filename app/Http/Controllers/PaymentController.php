@@ -7,22 +7,20 @@ use Xendit\Configuration;
 use Xendit\Invoice\InvoiceApi;
 use Xendit\Invoice\CreateInvoiceRequest;
 use App\Models\Payment;
+use Xendit\Invoice;
+use Xendit\Xendit;
+
 
 
 class PaymentController extends Controller
 {
-    var $apiInstance = null;
 
-    public function __construct()
+    public function createInvoice()
     {
-        Configuration::setXenditKey("xnd_development_Gy7qL3gIVpGEjvoiingIFRw5YfD1Rnfc1NMdMpi3wqWDSw34NMGA4BtbbZUyhmn");
-        $this->apiInstance = new InvoiceApi();
-    }
-    //
-    public function createInvoice(Request $request)
-    {
-        
+        $for_user_id = ''; 
+        $contentType = 'application/json';
 
+        Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
         $apiInstance = new InvoiceApi();
 
         $create_invoice_request = new CreateInvoiceRequest([
@@ -34,28 +32,56 @@ class PaymentController extends Controller
             'reminder_time' => 1
         ]);
 
-        $for_user_id = "62efe4c33e45694d63f585f0"; // Business ID of the sub-account merchant (XP feature)
+        try {            
 
-        try 
-        {
-            $result = $apiInstance->createInvoice($create_invoice_request, $for_user_id);
-            return response()->json($result);
+            $request = $apiInstance->createInvoiceRequest($create_invoice_request, $for_user_id, $contentType);
+            $client = new \GuzzleHttp\Client();
+            $response = $client->send($request);
+            $responseData = json_decode($response->getBody()->getContents(), true);
+
+            dd($responseData);
+
+            // dd($responseData['invoice_url']);
+
+            // Create a new Payment instance and save it to the database
+            // $payment = new Payment();
+            // $payment->invoice_url = $responseData['invoice_url'];
+            // $payment->save();
+
+
+
+            return response()->json(['message' => 'Invoice created successfully', 'data' => $responseData]);
         } 
-        catch (\Xendit\XenditSdkException $e) 
-        {
-            $errorMessage = 'Exception when calling InvoiceApi->createInvoice: ' . $e->getMessage();
-            $fullError = 'Full Error: ' . json_encode($e->getFullError());
-            return response()->json([$errorMessage, $fullError], 500);
+        catch (\Xendit\XenditSdkException $e){
+            return response()->json(['message' => 'Exception when calling InvoiceApi->createInvoice: '. $e->getMessage(), 'full_error' => $e->getFullError()], 500);
         }
+    }
 
 
-        $payment = new Payment();
-        $payment->status = 'pending';
-        $payment->checkout_link = $result['invoice_url'];
-        $payment->external_id = $create_invoice_request['external_id'];
-        $payment->save();
+    public function getInvoices()
+    {
+        $invoice_id = '6634752da7f5d303d7b74541';
+        $for_user_id = null;
+        // $invoice = getInvoiceByIdRequest($invoice_id, $for_user_id);
+        // dd($invoice);
 
-        return response()->json($payment);
+
+        Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
+        $apiInstance = new InvoiceApi();
+
+        $request = $apiInstance->getInvoiceByIdRequest($invoice_id, $for_user_id);
+        $client = new \GuzzleHttp\Client();
+        $response = $client->send($request);
+        $responseData = json_decode($response->getBody()->getContents(), true);
+
+        dd($responseData);
+
+
+
 
     }
+
+
+
+
 }

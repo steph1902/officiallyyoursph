@@ -18,6 +18,22 @@ class CollectionsController extends Controller
         // return view('welcome',compact('instagrams'));
     // }
 
+    // my account
+
+    public function addressEditForm()
+    {
+        return view('homesettingaddress');
+    }
+
+    public function orderSummary()
+    {
+        return view('homeordersummary');
+    }
+
+    // my account
+
+
+
     // cart
     public function cartView()
     {
