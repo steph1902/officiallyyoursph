@@ -62,10 +62,19 @@
 
 
                         </tr>
+
+                        @php
+                            $baseFare = 49+50;
+                            $shippingCost = $baseFare + (0.01 * $subTotal);
+                            $total = $shippingCost + $subTotal;
+                        @endphp
+
                         <tr>
                             @if(Auth::user()->address)
                                 <th colspan="4" class="text-right">Shipping Cost:</th>                        
-                                <td id="shipping">Free</td>
+                                <td id="shipping">
+                                    ₱  {{$shippingCost}}
+                                </td>
                             @else
                                 <th colspan="4" class="text-right">Shipping Cost:</th>
                                 <td id=""> <a href="{{url('home')}}"> Please complete your address first </td> </a>                        
@@ -73,7 +82,7 @@
                         </tr>
                         <tr>
                             <th colspan="4" class="text-right">Total:</th>
-                            <td id="total">Rp 419,000</td>
+                            <td id="total">₱ {{ number_format($total,0) }}</td>
                         </tr>
 
                         
@@ -86,7 +95,7 @@
             <form method="POST" action="{{ route('createInvoice') }}">
                 @csrf
                 <!-- Input tersembunyi untuk menyimpan total -->
-                <input type="hidden" name="total" id="totalInput">
+                <input type="hidden" name="total" id="totalInput" value="{{$total}}">
                 
                 <!-- Konten lainnya -->
             

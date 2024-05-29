@@ -180,7 +180,10 @@
                         <div class="actions">
                             <a target="_blank" href="{{$order->invoice_url}}"><button>Proceed Payment</button></a>
                             {{-- <button>Download</button> --}}
-                            <button>View Details</button>
+                            
+                            <a target="_blank" href="{{url('view-invoice/'.$order->external_id)}}">
+                                <button>View Details</button>
+                            </a>
                             {{-- <button>Cancel</button> --}}
                         </div>
                     </div>
@@ -195,37 +198,6 @@
 <div style="padding-top:10%;"></div>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
-    <style>
-        // ... (same as before)
-    </style>
-</head>
-<body>
-    <div class="invoice-container">
-        <!-- ... (same as before) -->
-    </div>
-    <button id="download-btn">Download as PDF</button>
-    <script src="html2pdf.bundle.min.js"></script>
-    <script>
-        document.getElementById("download-btn").addEventListener("click", () => {
-            const opt = {
-                margin: 1,
-                filename: "invoice.pdf",
-                image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-            };
-
-            html2pdf().set(opt).from(document.querySelector(".invoice-container")).save();
-        });
-    </script>
-</body>
-</html>
 
 
 @endsection
