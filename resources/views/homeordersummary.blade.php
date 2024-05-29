@@ -93,26 +93,98 @@
             </div>
             <div class="col-md-9">
 
+                {{-- Illuminate\Support\Collection {#407 ▼
+                    #items: array:4 [▼
+                      0 => {#1158 ▼
+                        +"id": 1
+                        +"external_id": "INVOICE-RASWK"
+                        +"user_id": "1"
+                        +"status": "PENDING"
+                        +"merchant_name": "Officially Yours Phillipines"
+                        +"merchant_profile_picture_url": "https://xnd-merchant-logos.s3.amazonaws.com/business/production/65e079f7002c6305961d82b6-1709284182329.jpeg"
+                        +"amount": 8078
+                        +"description": "INVOICE-RASWK"
+                        +"expiry_date": null
+                        +"invoice_url": "https://checkout-staging.xendit.co/v2/6656d389bc26893ccbfc2886"
+                        +"should_exclude_credit_card": 0
+                        +"should_send_email": 0
+                        +"created_at": "2024-05-29 07:04:41"
+                        +"updated_at": "2024-05-29 07:04:41"
+                        +"currency": "PHP"
+                        +"reminder_date": null
+                        +"metadata": null
+                      }
+                      1 => {#406 ▼
+                        +"id": 2
+                        +"external_id": "INVOICE-CA8E9"
+                        +"user_id": "1"
+                        +"status": "PENDING"
+                        +"merchant_name": "Officially Yours Phillipines"
+                        +"merchant_profile_picture_url": "https://xnd-merchant-logos.s3.amazonaws.com/business/production/65e079f7002c6305961d82b6-1709284182329.jpeg"
+                        +"amount": 8078
+                        +"description": "INVOICE-CA8E9"
+                        +"expiry_date": null
+                        +"invoice_url": "https://checkout-staging.xendit.co/v2/6656d39711961dacc51a0f48"
+                        +"should_exclude_credit_card": 0
+                        +"should_send_email": 0
+                        +"created_at": "2024-05-29 07:04:55"
+                        +"updated_at": "2024-05-29 07:04:55"
+                        +"currency": "PHP"
+                        +"reminder_date": null
+                        +"metadata": null
+                      }
+                      2 => {#750 ▶}
+                      3 => {#408 ▶}
+                    ]
+                    #escapeWhenCastingToString: false
+                  } --}}
+
                 {{--  --}}
+                @php
+                    use Carbon\Carbon;
+                    // Misalnya, $originalDate berasal dari database atau variabel lain
+                    // $originalDate = '2023-03-15'; // Ini bisa berupa variabel dinamis
+                    // $formattedDate = Carbon::parse($originalDate)->format('d F Y');
+                @endphp
+
+                {{-- <p class="date">Date: {{ $formattedDate }}</p> --}}
+
+
+
+
                 <h1 class="mb-4">My Orders</h1>
 
-                <div class="order-summary">
-                    <div class="order-details">
-                        <p>Order #12345</p>
-                        <p class="date">Date: 2023-03-15</p>
+                @foreach ($orders as $order)                                    
+                    <div class="order-summary">
+                        <div class="order-details">
+                            <p>{{$order->external_id}}</p>
+                            {{-- <p class="date">Date: 2023-03-15</p> --}}
+
+                            
+                                {{-- use Carbon\Carbon; --}}
+                                
+                            
+
+                            <p class="date">
+                                Date: {{ Carbon::parse($order->created_at)->format('d F Y') }}
+                                
+                            </p>
+
+                        </div>
+                        <div class="status">
+                            <p>Status: Pending</p>
+                        </div>
+                        <div class="total">
+                            <p>Total: ₱ {{ number_format($order->amount,0) }}  </p>
+                        </div>
+                        <div class="actions">
+                            <a target="_blank" href="{{$order->invoice_url}}"><button>Proceed Payment</button></a>
+                            {{-- <button>Download</button> --}}
+                            <button>View Details</button>
+                            {{-- <button>Cancel</button> --}}
+                        </div>
                     </div>
-                    <div class="status">
-                        <p>Status: Pending</p>
-                    </div>
-                    <div class="total">
-                        <p>Total: $120.00</p>
-                    </div>
-                    <div class="actions">
-                        <button>Pay</button>
-                        <button>View</button>
-                        <button>Cancel</button>
-                    </div>
-                </div>
+                @endforeach
 
                 {{--  --}}
                      
@@ -122,6 +194,38 @@
 
 <div style="padding-top:10%;"></div>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        // ... (same as before)
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <!-- ... (same as before) -->
+    </div>
+    <button id="download-btn">Download as PDF</button>
+    <script src="html2pdf.bundle.min.js"></script>
+    <script>
+        document.getElementById("download-btn").addEventListener("click", () => {
+            const opt = {
+                margin: 1,
+                filename: "invoice.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+            };
+
+            html2pdf().set(opt).from(document.querySelector(".invoice-container")).save();
+        });
+    </script>
+</body>
+</html>
 
 
 @endsection

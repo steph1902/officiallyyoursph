@@ -61,6 +61,7 @@ Route::post('/send-total', function (Request $request) {
 
 
 
+Route::get('view-invoice/{id}', [CollectionsController::class, 'invoiceView'])->name('invoice-view');
 
 
 Route::get('/', function () {
@@ -199,3 +200,8 @@ Route::get('calculate-shipping-cost', [ShippingController::class, 'getQuotation'
 
 // Perkiraan jarak ini dapat berubah tergantung pada rute yang diambil, lalu lintas, dan kondisi jalan. 
 // Jarak-jarak ini dapat digunakan sebagai referensi umum untuk mengestimasi jarak dari Makati ke kota-kota sekitarnya.
+
+
+
+
+// https://docs.xendit.co/id/webhook/setup-guide/php

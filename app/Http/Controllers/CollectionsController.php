@@ -48,6 +48,19 @@ class CollectionsController extends Controller
 
     // my account
 
+    public function invoiceView($id)
+    {
+        $orders = DB::table('invoices')->where('invoices.external_id',$id)->first();
+        $orderDetails = DB::table('invoice_details')->where('invoice_details.invoice_id',$id)->get();
+
+        // dd($orders->user_id);
+        $userId = $orders->user_id;
+        $userInfo = DB::table('users')->where('id',$userId)->first();
+        // dd($userInfo);
+        // dd($orderDetails);
+        return view('downloadableinvoice',compact('orders','orderDetails','userInfo'));
+    }
+
     public function addressEditForm()
     {
         return view('homesettingaddress');
@@ -55,7 +68,41 @@ class CollectionsController extends Controller
 
     public function orderSummary()
     {
-        return view('homeordersummary');
+        $userId = Auth::user()->id;
+        $orders = DB::table('invoices')->where('invoices.user_id',$userId)->get();
+        // dd($orders);
+
+
+        // $product = DB::table('products')
+        // ->join('color_variants', 'products.id', '=', 'color_variants.product_id')
+        // ->join('product_images', 'color_variants.id', '=', 'product_images.product_color_variants_id')
+        // ->join('size_chart', 'products.id', '=', 'size_chart.product_id')
+        // ->join('size_details', 'size_chart.id', '=', 'size_details.id_size_chart')
+        // ->select(
+        //     'products.id AS product_id',
+        //     'products.name AS product_name',
+        //     'products.description AS product_description',
+        //     'products.price',
+        //     'products.product_image',
+        //     'products.category',
+        //     'products.brand',
+        //     'products.status AS product_status',
+        //     'color_variants.id AS color_variant_id',
+        //     'color_variants.name AS color_variant_name',
+        //     'color_variants.code AS color_variant_code',
+        //     'color_variants.description AS color_variant_description',
+        //     'product_images.image_path AS product_image_path',
+        //     'size_chart.size_name',
+        //     'size_details.bust',
+        //     'size_details.waist',
+        //     'size_details.hips',
+        //     'size_details.length',
+        //     'size_details.side_slit_length'
+        // )
+        // ->where('products.id', $id)
+        // ->first();
+
+        return view('homeordersummary',compact('orders'));
     }
 
     // my account
