@@ -43,11 +43,21 @@ Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'i
 
 // Route::get("/payments",[PaymentController::class,'createInvoice'])->withoutMiddleware(['csrf']);
 Route::get('proceed-to-payment', [PaymentController::class, 'createInvoice']);
-Route::post('create-invoice', [PaymentController::class, 'postCreateInvoice']);
+// Route::post('create-invoice', [PaymentController::class, 'postCreateInvoice']);
 Route::get('test-get-invoices', [PaymentController::class, 'getInvoices']);
 // Route::post('/create-invoice', 'PaymentController@createInvoice')->withoutMiddleware(['csrf']);
 
 Route::get('/checkout', [CollectionsController::class, 'checkoutPage'])->name('checkout.index');
+
+
+Route::post('/create-invoice', [PaymentController::class, 'createInvoice'])->name('createInvoice');
+
+
+Route::post('/send-total', function (Request $request) {
+    $total = $request->input('total');
+    // Lakukan apa pun yang Anda inginkan dengan nilai total di sini
+    return response()->json(['message' => 'Total received successfully', 'total' => $total]);
+})->name('send-total');
 
 
 

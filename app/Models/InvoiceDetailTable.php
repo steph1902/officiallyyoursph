@@ -9,4 +9,5 @@ class InvoiceDetailTable extends Model
 {
     use HasFactory;
     protected $table = 'invoice_details';
+    protected $guarded = [];
 }

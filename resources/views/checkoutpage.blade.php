@@ -1,6 +1,24 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+    .pay-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    position: right;
+}
+
+</style>
+
 <body>
 
     <div style="padding-top:10%;"></div>
@@ -57,9 +75,49 @@
                             <th colspan="4" class="text-right">Total:</th>
                             <td id="total">Rp 419,000</td>
                         </tr>
+
+                        
+
                     </tfoot>
                 </table>
             </div>
+
+            {{-- <button type="submit" id="payButton" class="pay-button">Create Invoice</button> --}}
+            <form method="POST" action="{{ route('createInvoice') }}">
+                @csrf
+                <!-- Input tersembunyi untuk menyimpan total -->
+                <input type="hidden" name="total" id="totalInput">
+                
+                <!-- Konten lainnya -->
+            
+                <!-- Tombol submit -->
+                {{-- <button type="submit" class="pay-button">Create Invoice</button> --}}
+                
+                @if (session('invoice_url'))
+                    <div class="alert alert-success">
+                        <a class="pay-button" href="{{ session('invoice_url') }}" target="_blank">Pay Now</a>
+                    </div>
+                @else
+                    <button type="submit" id="payButton" class="pay-button">Create Invoice</button>
+                @endif
+
+                
+                
+
+
+
+            </form>
+            
+            
+
+
+
+
+            
+
+
+
+
         </div>
 
     </div>
@@ -75,6 +133,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             calculateShipping();
+            updateTotalInput();
         });
 
         function calculateShipping() {
@@ -91,6 +150,21 @@
             var total = subtotal + shippingCost;
             document.getElementById('total').textContent = '₱ ' + total.toFixed(2);
         }
+
+        function updateTotalInput() {
+            var total = document.getElementById('total').textContent;
+            total = total.replace('₱ ', ''); // Menghapus mata uang ₱
+            total = parseFloat(total.replace(',', '')); // Menghapus koma ribuan dan mengonversi ke float
+
+            // Set nilai total ke dalam input tersembunyi
+            document.getElementById('totalInput').value = total.toFixed(2);
+        }
+
+
+        
+
+
+
     </script>
     
 
