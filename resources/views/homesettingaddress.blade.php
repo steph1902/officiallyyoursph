@@ -2,6 +2,8 @@
 @section('content')
 
 
+
+
 <style>
     body {
     /* font-family: 'Open Sans', sans-serif; */
@@ -67,7 +69,16 @@ p {
                 {{--  --}}
                 {{--  --}}
                             <h1 class="mb-4">Shipping address</h1>
+
+
+@if(session('alert'))
+<div class="alert alert-success">
+    {{ session('alert') }}
+</div>
+@endif
                             {{-- <form method="POST" action="{{ route('save-address') }}"> --}}
+                            {{-- <form method="POST" action="{{action('CollectionsController@storeMyAccountAddress')}}"> --}}
+                            <form method="POST" action="{{route('store-my-account-address')}}">
                                 {{-- store-my-account-address --}}
                                 @csrf
 
@@ -77,30 +88,13 @@ p {
                                 </div>
                 
                                 <div class="form-group">
-                                    <label for="first_name">First name *</label>
+                                    <label for="first_name">Name *</label>
                                     <input type="text" class="form-control" id="first_name" name="first_name" value="{{Auth::user()->name}}" required>
-                                </div>
-                
-                                <div class="form-group">
-                                    <label for="last_name">Last name *</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
-                                </div>
-                
-                                {{-- <div class="form-group">
-                                    <label for="company_name">Company name (optional)</label>
-                                    <input type="text" class="form-control" id="company_name" name="company_name">
-                                </div> --}}
-                
-                                {{-- <div class="form-group">
-                                    <label for="country">Country/Region *</label>
-                                    <select class="form-control" id="country" name="country" required>
-                                        <option value="ID" selected>Indonesia</option>
-                                    </select>
-                                </div> --}}
+                                </div>                                            
                 
                                 <div class="form-group">
                                     <label for="street_address">Street address *</label>
-                                    <input type="text" class="form-control" id="street_address" name="street_address" required>
+                                    <input type="text" class="form-control" id="street_address" name="street_address" value="{{Auth::user()->address}}" required>
                                     <br>
                                     <button type="button" class="btn btn-primary" id="get-location-btn">Get Current Location</button>
                                     <small></small>
@@ -110,16 +104,13 @@ p {
                                     <input class="form-control" type="hidden" id="customer_latitude" name="customer_latitude">
                                     <input class="form-control" type="hidden" id="customer_longitude" name="customer_longitude">
                                 </div>
-
-
-
                 
                                 <div class="form-group">
                                     <label for="phone_number">Phone number *</label>
-                                    <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{Auth::user()->phone_number}}" required>
                                 </div>
                 
-                                <button type="submit" class="btn btn-primary">Save address</button>
+                                <button type="submit" class="btn btn-primary">Update Data</button>
                             </form>
                      
             </div>

@@ -6,118 +6,279 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Factory;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+
 
 
 
 class ShippingController extends Controller
 {
 
-
-  public function getQuotation()
-  {
-      // dd('hel');
-
-
-    //   
-
-    
-
-    // Get current time
-    $currentDateTime = Carbon::now();
-
-    // Add 3 hours
-    $futureDateTime = $currentDateTime->addHours(3);
-
-    // Format the datetime in ISO 8601 format
-    $formattedDateTime = $futureDateTime->toIso8601String();
-
-    // dd($formattedDateTime);
-    // "2024-04-16T05:31:47+00:00"
-    // 2024-04-16T11:19:45.106Z
-    // 2024-04-15T10:19:45.106Z
-    
-
-
-
-    // 
-
-        $key = env('LALAMOVE_KEY'); 
-        $secret = env('LALAMOVE_SECRET_KEY');   
-        // $key = env('LALAMOVE_SECRET_KEY');        
-
-        $time = time() * 1000;
-
-        $baseURL = 'https://rest.sandbox.lalamove.com'; // URL to Lalamove Sandbox API
+    public function getQuotationX(Request $request)
+    {
+        $key = env('LALAMOVE_KEY');
+        $secret = env('LALAMOVE_SECRET_KEY');
+        $baseURL = env('LALAMOVE_BASE_URL');
+        $region = env('LALAMOVE_REGION');
         $method = 'POST';
         $path = '/v3/quotations';
-        $region = 'SG';
+        $time = time() * 1000;
 
-        $body = '{
-            "data" : {
-                "scheduleAt": "2024-04-16T11:19:45.106Z",
-                "serviceType": "MOTORCYCLE",
-                "specialRequests": [],
-                "language": "en_SG",
-                "stops": [
-                {
-                    "coordinates": {
-                        "lat": "1.326410",
-                        "lng": "103.896333"
-                    },
-                    "address": "10 Ubi Crescent, Ubi Techpark Lobby C, #04-35, Singapore 408564"
-                },
-                {
-                    "coordinates": {
-                        "lat": "1.334584",
-                        "lng": "103.962226"
-                    },
-                    "address": "5 Changi Business Park Central 1, Singapore 486038"
-                }],
-                "isRouteOptimized": true
-            }  
-        }';
+        $body = [
+            'data' => [
+                'serviceType' => 'MOTORCYCLE',
+                'specialRequests' => [],
+                'language' => 'en_SG',
+                'stops' => [
+                    [
+                        'coordinates' => [
+                            'lat' => '1.3140113',
+                            'lng' => '103.8807331'
+                        ],
+                        'address' => 'Lorong 23 Geylang, Singapore Badminton Hall, Singapore'
+                    ],
+                    [
+                        'coordinates' => [
+                            'lat' => '1.2966147',
+                            'lng' => '103.8485095'
+                        ],
+                        'address' => 'Stamford Road, National Museum of Singapore, Singapore'
+                    ]
+                ]
+            ]
+        ];
 
-        // dd($body);
-
-        $rawSignature = "{$time}\r\n{$method}\r\n{$path}\r\n\r\n{$body}";
+        $rawSignature = "{$time}\r\n{$method}\r\n{$path}\r\n\r\n" . json_encode($body);
         $signature = hash_hmac("sha256", $rawSignature, $secret);
+        $token = $key . ':' . $time . ':' . $signature;
+
         $startTime = microtime(true);
-        $token = $key.':'.$time.':'.$signature;
 
         $response = Http::withHeaders([
-            'Content-type' => 'application/json; charset=utf-8',
-            'Authorization' => 'hmac '.$token,
+            'Content-Type' => 'application/json; charset=utf-8',
+            'Authorization' => 'hmac ' . $token,
             'Accept' => 'application/json',
-            'Market' => $region,
-        ])->post($baseURL.$path, [
-            'data' => json_decode($body, true),
-        ]);
-
-        // dd($response);
+            'Market' => $region
+        ])->post($baseURL . $path, $body);
 
         $httpCode = $response->status();
-        $data = $response->json();
+        $responseData = $response->body();
 
-        echo 'Request body: ' . $body . PHP_EOL;
-        echo '<br>';echo '<br>';echo '<br>';
-echo 'Request headers: ' . PHP_EOL;
-echo '<br>';echo '<br>';echo '<br>';
-foreach ($response as $name => $value) {
-    echo $name . ': ' . $value . PHP_EOL;
-}
+        $elapsedTime = floor((microtime(true) - $startTime) * 1000);
 
-        echo 'Total elapsed http request/response time in milliseconds: '.floor((microtime(true) - $startTime)*1000)."\r\n";
-        echo '<br>';
-        echo 'Authorization: hmac '.$token."\r\n";
-        echo '<br>';
-        echo 'Status Code: '.$httpCode."\r\n";
-        echo '<br>';
-        echo 'Returned data: ';
-        echo '<br>';
-        print_r($data);
+        return response()->json([
+            'elapsed_time_ms' => $elapsedTime,
+            'authorization' => 'hmac ' . $token,
+            'status_code' => $httpCode,
+            'response_data' => $responseData
+        ]);
+    }
+
+    public function getQuotationxx(Request $request)
+    {
+        $key = env('LALAMOVE_KEY');
+        $secret = env('LALAMOVE_SECRET_KEY');
+        $baseURL = env('LALAMOVE_BASE_URL');
+        $region = env('LALAMOVE_REGION');
+        $method = 'POST';
+        $path = '/v3/quotations';
+        $time = time() * 1000;
+
+        $body = [
+            'data' => [
+                'serviceType' => 'MOTORCYCLE',
+                'specialRequests' => [],
+                'language' => 'en_SG',
+                'stops' => [
+                    [
+                        'coordinates' => [
+                            'lat' => '1.3140113',
+                            'lng' => '103.8807331'
+                        ],
+                        'address' => 'Lorong 23 Geylang, Singapore Badminton Hall, Singapore'
+                    ],
+                    [
+                        'coordinates' => [
+                            'lat' => '1.2966147',
+                            'lng' => '103.8485095'
+                        ],
+                        'address' => 'Stamford Road, National Museum of Singapore, Singapore'
+                    ]
+                ]
+            ]
+        ];
+
+        $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
+        $rawSignature = "{$time}\n{$method}\n{$path}\n\n{$jsonBody}";
+        $signature = hash_hmac("sha256", $rawSignature, $secret);
+        $token = $key . ':' . $time . ':' . $signature;
+
+        $startTime = microtime(true);
+
+        try {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json; charset=utf-8',
+                'Authorization' => 'hmac ' . $token,
+                'Accept' => 'application/json',
+                'Market' => $region
+            ])->timeout(10)->post($baseURL . $path, $body);
+
+            $httpCode = $response->status();
+            $responseData = $response->body();
+        } catch (\Exception $e) {
+            Log::error('Lalamove API request failed', [
+                'exception' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'message' => 'An error occurred while processing the request',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+
+        $elapsedTime = floor((microtime(true) - $startTime) * 1000);
+
+        return response()->json([
+            'elapsed_time_ms' => $elapsedTime,
+            'authorization' => 'hmac ' . $token,
+            'status_code' => $httpCode,
+            'response_data' => $responseData
+        ]);
     }
 
 
+    public function getQuotationXXX(Request $request)
+    {
+        $key = env('LALAMOVE_API_KEY');
+        $secret = env('LALAMOVE_API_SECRET');
+        $baseURL = env('LALAMOVE_BASE_URL');
+        $region = env('LALAMOVE_REGION');
+        $method = 'POST';
+        $path = '/v3/quotations';
+        $time = time() * 1000;
+
+        $body = [
+            'data' => [
+                'serviceType' => 'MOTORCYCLE',
+                'specialRequests' => [],
+                'language' => 'en_SG',
+                'stops' => [
+                    [
+                        'coordinates' => [
+                            'lat' => '1.3140113',
+                            'lng' => '103.8807331'
+                        ],
+                        'address' => 'Lorong 23 Geylang, Singapore Badminton Hall, Singapore'
+                    ],
+                    [
+                        'coordinates' => [
+                            'lat' => '1.2966147',
+                            'lng' => '103.8485095'
+                        ],
+                        'address' => 'Stamford Road, National Museum of Singapore, Singapore'
+                    ]
+                ]
+            ]
+        ];
+
+        $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
+        $rawSignature = "{$time}\r\n{$method}\r\n{$path}\r\n\r\n{$jsonBody}";
+        $signature = hash_hmac("sha256", $rawSignature, $secret);
+        $token = $key . ':' . $time . ':' . strtolower($signature);
+
+        Log::debug('Raw Signature String: ' . $rawSignature);
+        Log::debug('Computed HMAC Signature: ' . $signature);
+
+        $startTime = microtime(true);
+
+        try {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json; charset=utf-8',
+                'Authorization' => 'hmac ' . $token,
+                'Accept' => 'application/json',
+                'Market' => $region
+            ])->timeout(10)->post($baseURL . $path, $body);
+
+            $httpCode = $response->status();
+            $responseData = $response->body();
+        } catch (\Exception $e) {
+            Log::error('Lalamove API request failed', [
+                'exception' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'message' => 'An error occurred while processing the request',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+
+        $elapsedTime = floor((microtime(true) - $startTime) * 1000);
+
+        return response()->json([
+            'elapsed_time_ms' => $elapsedTime,
+            'authorization' => 'hmac ' . $token,
+            'status_code' => $httpCode,
+            'response_data' => $responseData
+        ]);
+    }
 
 
+    // lalamove
+
+    public function getQuotation()
+    {
+        $headers = [
+            'Content-Type' => 'application/json',
+            // 'Authorization' => 'hmac pk_test_42cf4ba3598ec5495ff811902d4e992f:1716949866799:4ea668fc32d58b7d4ea9b4df9425274f801d880329b8553bae9f6e751b976851',
+            // pk_test_42cf4ba3598ec5495ff811902d4e992f:1716950580018:1af268c175a0f682e3544e9739e1036ca682da4207fafd29840721739a796c74',
+            // 'Authorization' => 'hmac pk_test_42cf4ba3598ec5495ff811902d4e992f:1716950580018:1af268c175a0f682e3544e9739e1036ca682da4207fafd29840721739a796c74',
+            'Market' => 'HK',
+        ];
+
+        $body = [
+            "data" => [
+                "serviceType" => "MOTORCYCLE",
+                "language" => "en_HK",
+                "stops" => [
+                    [
+                        "coordinates" => [
+                            "lat" => "22.33547351186244",
+                            "lng" => "114.17615807116502",
+                        ],
+                        "address" => "Innocentre, 72 Tat Chee Ave, Kowloon Tong",
+                    ],
+                    [
+                        "coordinates" => [
+                            "lat" => "22.284801519832378",
+                            "lng" => "114.19267803352939",
+                            // 22.284801519832378, 114.19267803352939
+                        ],
+                        "address" => "16 Tsing Fung St, Causeway Bay, Hong Kong",
+                    ],
+                ],
+                "isRouteOptimized" => false,
+                "item" => [
+                    "quantity" => "12",
+                    "weight" => "LESS_THAN_3_KG",
+                    "categories" => [
+                        "FOOD_DELIVERY",
+                        "OFFICE_ITEM",
+                    ],
+                    "handlingInstructions" => [
+                        "KEEP_UPRIGHT",
+                    ],
+                ],
+            ],
+        ];
+
+        $response = Http::withHeaders($headers)->post('https://rest.sandbox.lalamove.com/v3/quotations', $body);
+
+        return response()->json($response->json());
+    }
+
+    // lalamove
+
+    
 }

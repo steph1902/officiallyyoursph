@@ -42,9 +42,13 @@ Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'i
 
 
 // Route::get("/payments",[PaymentController::class,'createInvoice'])->withoutMiddleware(['csrf']);
-Route::get('test-payment', [PaymentController::class, 'createInvoice']);
+Route::get('proceed-to-payment', [PaymentController::class, 'createInvoice']);
+Route::post('create-invoice', [PaymentController::class, 'postCreateInvoice']);
 Route::get('test-get-invoices', [PaymentController::class, 'getInvoices']);
 // Route::post('/create-invoice', 'PaymentController@createInvoice')->withoutMiddleware(['csrf']);
+
+Route::get('/checkout', [CollectionsController::class, 'checkoutPage'])->name('checkout.index');
+
 
 
 
@@ -112,8 +116,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('my-account/address', [CollectionsController::class, 'addressEditForm'])->name('my-account-address');
 
 #todo
-// Route::post('store-my-account-address', [CollectionsController::class, 'storeMyAccountAddress'])->name('store-my-account-address');
+Route::post('store-my-account-address', [CollectionsController::class, 'storeMyAccountAddress'])->name('store-my-account-address');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+#modifyDB
+// add address, add phone number
+
+// ALTER TABLE oyph_database.users ADD address varchar(255) NULL;
+// ALTER TABLE oyph_database.users ADD phone_number varchar(100) NULL;
+
+
 
 Route::get('my-account/order-summary', [CollectionsController::class, 'orderSummary'])->name('my-account-order-summary');
 
@@ -157,3 +169,23 @@ Route::get('calculate-shipping-cost', [ShippingController::class, 'getQuotation'
 
 // https://docs.xendit.co/payment-link/integration-and-testing/payment-links-integration
 // https://developers.xendit.co/api-reference/#create-invoice
+
+
+
+
+// Alamat "Domiko Honda, 3522 Honda, Makati, 1213 Metro Manila" 
+// berlokasi di Makati, Metro Manila, Filipina. Makati adalah salah satu kota besar di 
+// Filipina dan merupakan pusat keuangan dan bisnis utama di negara tersebut. Dengan demikian, 
+// kita dapat menganggap Makati sebagai kota besar.
+
+// Jarak antara Makati dan kota-kota sekitarnya dapat bervariasi tergantung pada lokasi persisnya 
+// di dalam kota dan tujuan Anda. Sebagai referensi, berikut adalah perkiraan jarak dari Makati ke beberapa kota besar di sekitarnya:
+
+// 1. **Makati - Manila**: Sekitar 7-10 kilometer (tergantung pada lokasi dalam kota).
+// 2. **Makati - Quezon City**: Sekitar 10-15 kilometer.
+// 3. **Makati - Taguig**: Sekitar 5-10 kilometer.
+// 4. **Makati - Pasay**: Sekitar 5-10 kilometer.
+// 5. **Makati - Pasig**: Sekitar 10-15 kilometer.
+
+// Perkiraan jarak ini dapat berubah tergantung pada rute yang diambil, lalu lintas, dan kondisi jalan. 
+// Jarak-jarak ini dapat digunakan sebagai referensi umum untuk mengestimasi jarak dari Makati ke kota-kota sekitarnya.

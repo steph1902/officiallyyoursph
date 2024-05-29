@@ -7,10 +7,38 @@ use Illuminate\Support\Facades\DB;
 use Cart;
 // use Illuminate\Http\Request;
 use App\Models\Partnership;
+use Auth;
 
 
 class CollectionsController extends Controller
 {
+
+    // 
+
+    public function checkoutPage()
+    {
+        $carts = Cart::content();
+        $subTotalString = Cart::subtotal(); // Get the subtotal as a string
+        $subTotalString = str_replace(['₱', ','], '', $subTotalString); // Remove currency symbol and commas
+        $subTotal = (int) $subTotalString; // Convert to integer
+        return view('checkoutPage',compact('carts','subTotal'));
+    }
+
+    public function storeMyAccountAddress(Request $request)
+    {
+        $request->validate([
+            'street_address' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:255',
+        ]);
+
+        $user = Auth::user();
+        $user->address = $request->street_address;
+        $user->phone_number = $request->phone_number;
+        $user->save();
+
+        return redirect()->back()->with('alert', 'Data successfully updated!');
+
+    }
 
     // public function indexView()
     // {

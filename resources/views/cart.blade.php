@@ -239,6 +239,35 @@
 							</div>
 						</div>
 
+
+						<br>
+
+						@if(Auth::check())
+							{{-- <form action="{{ route('payment.createInvoice') }}" method="POST"> --}}
+							<form action="#" method="POST">
+								@csrf
+								<input type="hidden" name="name" value="{{ $cart->name }}">
+								<input type="hidden" name="image_path" value="{{ $cart->options->image_path }}">
+								<input type="hidden" name="size" value="{{ $cart->options->size }}">
+								<input type="hidden" name="color" value="{{ $cart->options->color }}">
+								<input type="hidden" name="price" value="{{ $subTotal }}">
+
+								<button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+									Proceed to checkout							
+								</button>
+							</form>							
+							
+						@else
+							<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+								<a href="{{url('login')}}" style="color: white !important;">
+									Please Log In first to checkout
+								</a>
+							</button>
+						@endif
+
+						<div style="padding-top: 5%;"></div>
+
+						
 						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Message us in Viber /  <a href="{{url('https://wa.me/639064495863')}}" target="_blank">Whatsapp</a> 
 						</button>
