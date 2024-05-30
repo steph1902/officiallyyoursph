@@ -8,6 +8,8 @@ use Cart;
 // use Illuminate\Http\Request;
 use App\Models\Partnership;
 use Auth;
+use Illuminate\Support\Facades\Log;
+
 
 
 class CollectionsController extends Controller

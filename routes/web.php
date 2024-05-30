@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\XenditCallbackController;
+
+Route::post('/webhook/xendit', [XenditCallbackController::class, 'handle']);
+
 
 
 /*
