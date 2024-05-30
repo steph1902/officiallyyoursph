@@ -68,9 +68,9 @@ p {
                     <li class="nav-item">
                         <a class="nav-link" href="{{ 'my-account/address' }}">Addresses</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Account details</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                 <a class="nav-link" href="#">Logout</a>
                     </li>

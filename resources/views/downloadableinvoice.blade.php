@@ -149,10 +149,22 @@
                         <td colspan="2">Shipping Fee</td>
                         <td>Rp200,000</td>
                     </tr> --}}
+
+                    <tr class="total-row">
+                        <td colspan="2">Shipping Cost</td>
+                        <td>₱ {{ number_format($orders->shipping_cost,0) }}</td>
+                    </tr>
+
+                    <tr class="total-row">
+                        <td colspan="2">Subtotal</td>
+                        <td>₱ {{ number_format($orders->amount - $orders->shipping_cost , 0) }}</td>
+                    </tr>
+
                     <tr class="total-row">
                         <td colspan="2">Total (With Shipping Cost)</td>
                         <td>₱ {{ number_format($orders->amount,0) }}</td>
                     </tr>
+
 
 
                 </tbody>

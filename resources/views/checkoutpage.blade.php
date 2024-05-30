@@ -3,7 +3,7 @@
 
 <style>
     .pay-button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;    
     border: none;
     color: white;
     padding: 15px 32px;
@@ -96,6 +96,7 @@
                 @csrf
                 <!-- Input tersembunyi untuk menyimpan total -->
                 <input type="hidden" name="total" id="totalInput" value="{{$total}}">
+                <input type="hidden" name="shipping_cost" value="{{$shippingCost}}">
                 
                 <!-- Konten lainnya -->
             
@@ -103,8 +104,15 @@
                 {{-- <button type="submit" class="pay-button">Create Invoice</button> --}}
                 
                 @if (session('invoice_url'))
+
+                    @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
                     <div class="alert alert-success">
-                        <a class="pay-button" href="{{ session('invoice_url') }}" target="_blank">Pay Now</a>
+                        <a class="pay-button" href="{{ session('invoice_url') }}" target="_blank">Proceed Payment</a>
                     </div>
                 @else
                     <button type="submit" id="payButton" class="pay-button">Create Invoice</button>

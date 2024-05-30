@@ -205,3 +205,10 @@ Route::get('calculate-shipping-cost', [ShippingController::class, 'getQuotation'
 
 
 // https://docs.xendit.co/id/webhook/setup-guide/php
+
+
+#todo
+// 1. simpan shipping cost ke database
+// 2. deploy
+// 3. webhook
+// 4. order table di admin

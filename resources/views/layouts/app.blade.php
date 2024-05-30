@@ -292,9 +292,14 @@ SALE --}}
 					</span>
 				</li>
 
+				@if(Auth::check())
 				<li>
 					{{-- <a href="product.html">Shop</a> --}}
+				
+						<a href="{{url('home')}}">Customer Dashboard</a>
+					
 				</li>
+				@endif
 
 				<li>
 					{{-- <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a> --}}
@@ -359,11 +364,18 @@ SALE --}}
 						</a>
 					</li>
 
+					@auth
+						
+					
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							{{-- My Account --}}
+						<a href="{{url('home')}}" class="stext-102 cl2 hov-cl1 trans-04">
+							My Account
 						</a>
 					</li>
+
+					@endauth
+
+					
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
@@ -391,58 +403,58 @@ SALE --}}
 
 					<div class="flex-w flex-sb p-t-36 gallery-lb">
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-01.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-01.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-02.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-02.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-03.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-03.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-04.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-04.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-05.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-05.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-06.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-06.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-07.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-07.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-08.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-08.jpg');"></a>
-						</div>
+						</div> --}}
 
 						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
+						{{-- <div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-09.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-09.jpg');"></a>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 
